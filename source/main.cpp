@@ -11,5 +11,8 @@ int main(int argc, char * argv[])
 	sdliv::App app;
 	app.OnInit();
 	app.openFile(image_path);
+#ifdef LIFE
+	Life::Init(&app);
+#endif
 	return app.OnExecute();
 }

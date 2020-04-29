@@ -11,6 +11,12 @@
 #include <sdl2_ttf.v140.2.0.14\build\native\include\SDL_ttf.h>
 #endif
 
+#define LIFE
+#ifdef LIFE
+#include <Life.h>
+#endif
+
+
 #include <map>
 #include <string>
 
@@ -90,6 +96,8 @@ namespace sdliv
 
 			//starts SDL, IMG, TTF makes window and font
 			bool OnInit();
+
+			Element * GetActiveElement(void) { return active_element; };
 
 			//opens one file and sets it to the active index
 			//returns -1 on fail
@@ -219,6 +227,8 @@ namespace sdliv
 			Element(const Element & e);
 			virtual ~Element();
 			int close(); //destroy surface, texture, not renderer
+
+			SDL_Surface * GetSurface() { return surface; };
 
 			int setRenderingContext(SDL_Renderer * r);
 			SDL_Renderer * getRenderingContext();

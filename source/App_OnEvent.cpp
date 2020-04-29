@@ -14,7 +14,16 @@ void sdliv::App::OnEvent(SDL_Event * e)
 			break;
 		case SDL_QUIT:
 			Running = false;
+#ifdef LIFE
+			Life::Cleanup();
+#endif
 			break;
+#ifdef LIFE
+		case SDL_USEREVENT:
+			if (e->user.type == Life::eventType) {
+				Life::Update();
+			}
+#endif
 		default:
 			break;
 	}
